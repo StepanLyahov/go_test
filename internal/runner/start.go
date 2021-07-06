@@ -4,6 +4,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"go_task/internal/adapter/delivery/http"
 	"go_task/internal/app"
+	"go_task/internal/app/command"
 	"go_task/internal/config"
 	"go_task/internal/server"
 )
@@ -24,7 +25,14 @@ func newConfig() *config.Config {
 }
 
 func newApplication() app.Application {
-	return app.Application{}
+
+	commands := app.Commands{
+		CalculatingUniqueId: command.NewCalculatingUniqueIdHandler(),
+	}
+
+	return app.Application{
+		Commands: commands,
+	}
 }
 
 func startServer(cfg *config.Config, application app.Application) {
