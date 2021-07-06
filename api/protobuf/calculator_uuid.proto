@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "./";
+
+service CalculatorUUIDService {
+  rpc calculate(ParamsRequest) returns (CalculateResponse) {}
+}
+
+message ParamsRequest {
+  string param1 = 1;
+  string param2 = 2;
+}
+
+message CalculateResponse {
+  string uuid = 1;
+  string err = 2;
+}
