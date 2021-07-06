@@ -10,6 +10,12 @@ type handler struct {
 	app app.Application
 }
 
+func (h *handler) CalculatingId(w http.ResponseWriter, r *http.Request) {
+	panic("implement me")
+}
+
 func NewHandler(app app.Application, r chi.Router) http.Handler {
-	return nil
+	return HandlerFromMux(&handler{
+		app: app,
+	}, r)
 }
