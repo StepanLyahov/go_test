@@ -1,1 +1,5 @@
-module "go_task"
+module go_task
+
+go 1.16
+
+require github.com/spf13/viper v1.8.1
