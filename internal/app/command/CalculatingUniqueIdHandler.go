@@ -17,5 +17,7 @@ func NewCalculatingUniqueIdHandler() CalculatingUniqueIdHandler {
 }
 
 func (h *CalculatingUniqueIdHandler) Handle(request CalculatingUniqueIdCommandRequest) (CalculatingUniqueIdCommandResponse, error) {
-	return CalculatingUniqueIdCommandResponse{}, nil
+	return CalculatingUniqueIdCommandResponse{
+		"test",
+	}, nil
 }
