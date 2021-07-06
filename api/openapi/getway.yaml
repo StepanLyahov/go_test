@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: Go test
+  description: getway API
+  version: 0.0.1
+servers:
+  - url: 'https://{hostname}/v1'
+    variables:
+      hostname:
+        default: localhost
+security:
+  - bearerAuth: [ ]
+
+paths:
+  /calculatingUniqueId:
+    get:
+      tags:
+        - calculatingUniqueId
+      operationId: calculatingId
+      requestBody:
+        description: two params for generate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculatingUniqueIdRequest'
+      responses:
+        '200':
+          description: id generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatingUniqueIdResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+  schemas:
+    CalculatingUniqueIdRequest:
+      type: object
+      required: [ param1, param2]
+      properties:
+        param1:
+          type: string
+        param2:
+          type: string
+
+    CalculatingUniqueIdResponse:
+      type: object
+      required: [ uuid ]
+      properties:
+        uuid:
+          type: string
+    Error:
+      type: object
+      required: [ slug, details ]
+      properties:
+        slug:
+          type: string
+        details:
+          type: string
