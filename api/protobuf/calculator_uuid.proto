@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package calculator;
 
-option go_package = "./";
+option go_package = "./rpc";
 
 service CalculatorUUIDService {
   rpc calculate(ParamsRequest) returns (CalculateResponse) {}
