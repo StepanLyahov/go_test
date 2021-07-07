@@ -3,6 +3,7 @@ package runner
 import (
 	"github.com/sirupsen/logrus"
 	"go_task/internal/adapter/delivery/http"
+	"go_task/internal/adapter/delivery/rpc"
 	"go_task/internal/app"
 	"go_task/internal/app/command"
 	"go_task/internal/config"
@@ -11,7 +12,7 @@ import (
 
 func Start() {
 	cfg := newConfig()
-	application := newApplication()
+	application := newApplication(cfg)
 	startServer(cfg, application)
 }
 
@@ -24,10 +25,16 @@ func newConfig() *config.Config {
 	return cfg
 }
 
-func newApplication() app.Application {
+func newApplication(cfg *config.Config) app.Application {
+
+	calculator, err := rpc.NewCalculatorUuidClient(cfg)
+	if err != nil {
+		logrus.Fatalf("Error connection to RPC server err: %v", err)
+	}
+
 
 	commands := app.Commands{
-		CalculatingUniqueId: command.NewCalculatingUniqueIdHandler(),
+		CalculatingUniqueId: command.NewCalculatingUniqueIdHandler(calculator),
 	}
 
 	return app.Application{
