@@ -57,7 +57,7 @@ func unmarshall(cfg *Config) error {
 		return err
 	}
 
-	if err := viper.UnmarshalKey("http", &cfg.GRPC); err != nil {
+	if err := viper.UnmarshalKey("rpc", &cfg.GRPC); err != nil {
 		return err
 	}
 
