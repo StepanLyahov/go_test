@@ -35,8 +35,7 @@ GRPC сервер.
 
 1. Запустить mockgRPCServer/main.go для поднятия GRPC-сервера
 2. Запустить cmd/main.go для поднятия Getaway
-
-3. Выполнить запрос к API, как в op
+3. Выполнить запрос к API, как в openapi
 
 
 
